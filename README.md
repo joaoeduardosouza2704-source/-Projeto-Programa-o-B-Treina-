@@ -1,1 +1,7 @@
-# -Projeto-Programa-o-B-Treina-
+# Projeto Treina Mais
+- Resumo do aplicativo/site:
+  Inspirado em aplicativos como gymrats , Hevy e Fitfolio o Treina Mais busca ser um aplicativo para anotar os treinos dos mais diversos tipos de atividades física: Academia , Corrida , Artes Marciais. Os usuários vão poder anotar suas cargas/métricas de treino para a cada treino irem evoluindo. Além disso , os usuários serão capazes de postar a foto do treino , a cada foto postada gera uma sequência de treino, por exemplo , 7 dias , 15 dias , 30 mes , etc.
+Funcionalidades iniciais:
+- CRUD básico: Criar treino, Exibir treinos passado, Atualizar Treinos, Excluir treinos.
+- O indivíduo vai poder adicionar um vídeo da execução do exercício( Aqui pensei em utilizar algum site que possua alguma API para adicionar informações de como executar o exercício ou alguma informação do site( Achei essa API:https://api-ninjas.com/api/exercises#allexercises-endpoint, porém so devolve textos, já a Wger API pode ser capaz de devolver vídeos de execção, gostaria da opinião do Professor)
+- O usuário poderá criar um Gráfico de Evolução de seu peso, além da sua evolução nos parâmetros de cada exercício. Por exemplo, evolução de Carga do Supino Inclinado de 12,5kg para 20kg e será apresentado um gráfico de evolução. Caso o treino não seja de musculação, por exemplo, esportes aeróbicos, ou treinos funcionais, o usuário deve detalhar qual parâmetro é utilizado como "Carga". Porém esse tipo de treino ainda não tive uma ideia de como implentar um gráfico de evolução.
