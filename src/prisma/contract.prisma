@@ -1,0 +1,21 @@
+
+
+model Usuario {
+  id        String     @id @default(uuid())
+  nome      String     
+  username  String     @unique
+  email     String     @unique
+  criadoEm  DateTime   @default(now())
+  treinos   Treino[]
+}
+
+model Treino {
+  id        String     @id @default(uuid())
+  titulo    String
+  descricao String?
+  data      DateTime   @default(now())
+  usuarioID String
+  usuario   Usuario    @relation(fields: [usuarioId], references: [id], onDelete:Cascade)
+  numero_exercicios Integer 
+}
+

@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  
+}
+
+model Usuario {
+  id        String     @id @default(uuid())
+  nome      String     
+  username  String     @unique
+  email     String     @unique
+  criadoEm  DateTime   @default(now())
+  treinos   Treino[]
+}
+
+model Treino {
+  id        String     @id @default(uuid())
+  usuarioId String
+  titulo    String
+  descricao String?
+  data      DateTime   @default(now())
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  
+}
