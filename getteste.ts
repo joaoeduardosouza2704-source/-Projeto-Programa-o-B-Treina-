@@ -11,9 +11,48 @@ app.use(express.json());
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter }); // Declarado apenas uma vez!
+const prisma = new PrismaClient({ adapter }); 
 
-app.get('/treinos', async (req: Request, res: Response) => {
+
+app.post('/adicionarusuario', async (req: Request, res: Response) => {
+  try {
+    const { nome, username, email } = req.body;
+
+    const novoUsuario = await prisma.usuario.create({
+      data: {
+        nome,
+        username,
+        email
+      }
+    });
+
+    res.status(201).json(novoUsuario);
+  } catch (error) {
+    console.error("ERRO AO CRIAR USUÁRIO:", error);
+    res.status(500).json({ erro: "Erro ao criar usuário", detalhes: error.message });
+  }
+});
+
+app.post('/adicionatreino', async (req: Request, res: Response) => {
+  try{
+      const novoTreino = await prisma.treino.create({
+      data: {
+        usuarioId: req.body.usuarioId,
+        titulo: req.body.titulo,
+        descricao: req.body.descricao
+      }
+
+    });
+    res.status(201).json(novoTreino)
+   }
+   catch(error){
+    console.error(error);
+    res.status(500).send("Erro ao criar treino");
+   }
+   
+});
+
+app.get('/treinos', async (req: Request, res: Res ponse) => {
   try {
     const treinos = await prisma.treino.findMany({
       include: {

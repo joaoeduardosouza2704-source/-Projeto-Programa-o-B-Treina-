@@ -32,6 +32,28 @@ async function main() {
       treinos: true,
     },
   });
+  const usuario2 = await prisma.usuario.create({
+    data: {
+      nome: 'João Eduardo',
+      username: 'johny',
+      email: 'joao@email.com',
+      treinos: {
+        create: [
+          {
+            titulo: 'Treino A - Peito e Tríceps',
+            descricao: 'Supino reto, supino inclinado e tríceps testa.',
+          },
+          {
+            titulo: 'Treino B - Costas e Bíceps',
+            descricao: 'Puxada alta, remunada curvada e rosca direta.',
+          },
+        ],
+      },
+    },
+    include: {
+      treinos: true,
+    },
+  });
 
   console.log('Seed executado com sucesso!', usuario);
 }
