@@ -16,7 +16,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/joaoeduardosouza2704-source/-Projeto-Programa-o-B-Treina-/issues"
   },
@@ -26,7 +26,7 @@
     "@types/node": "^26.4.1",
     "@types/pg": "^8.23.1",
     "ts-node": "^10.9.2",
-    "tsx": "^4.23.13",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
   "dependencies": {
@@ -37,6 +37,10 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.23.0",
-    "prisma": "^7.10.0"
+    "prisma": "^7.10.0"},
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
   }
 }
+  
+

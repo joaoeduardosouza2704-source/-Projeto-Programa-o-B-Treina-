@@ -1,3 +1,4 @@
+import 'dotenv/config'; 
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
@@ -6,6 +7,7 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
+// ... resto do código da função main() ...
 async function main() {
   await prisma.treino.deleteMany();
   await prisma.usuario.deleteMany();
@@ -18,34 +20,19 @@ async function main() {
       treinos: {
         create: [
           {
-            titulo: 'Treino A - Peito e Tríceps',
-            descricao: 'Supino reto, supino inclinado e tríceps testa.',
+            titulo: 'Musculação - Força e Hipertrofia',
+            descricao: 'Treino focado em progressão de carga.',
+            duracao_treino: 60, // 60 minutos (1 hora)
           },
           {
-            titulo: 'Treino B - Costas e Bíceps',
-            descricao: 'Puxada alta, remunada curvada e rosca direta.',
-          },
-        ],
-      },
-    },
-    include: {
-      treinos: true,
-    },
-  });
-  const usuario2 = await prisma.usuario.create({
-    data: {
-      nome: 'João Eduardo',
-      username: 'johny',
-      email: 'joao@email.com',
-      treinos: {
-        create: [
-          {
-            titulo: 'Treino A - Peito e Tríceps',
-            descricao: 'Supino reto, supino inclinado e tríceps testa.',
+            titulo: 'Treino de Jiu-Jitsu',
+            descricao: 'Prática de posições, quedas e rola.',
+            duracao_treino: 90, // 90 minutos (1h30)
           },
           {
-            titulo: 'Treino B - Costas e Bíceps',
-            descricao: 'Puxada alta, remunada curvada e rosca direta.',
+            titulo: 'Tiro na Esteira (Sprint)',
+            descricao: 'Treino intervalado de alta intensidade (HIIT) na esteira.',
+            duracao_treino: 30, // 30 minutos
           },
         ],
       },
