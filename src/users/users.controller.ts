@@ -42,3 +42,13 @@ export async function updateUser(req:Request, res:Response, next:NextFunction){
         next(err);
     }
 }
+export async function Delete(req:Request, res:Response, next:NextFunction){
+    try{
+        const username = req.params.username
+        const usuarioDeletado = await usersServices.deleteUsername(username);
+        res.json(200);
+    }
+    catch(err){
+        next(err);
+    }
+}

@@ -99,6 +99,17 @@ export async function updateUsername(username_novo:string, username:string){
     );
     return usuarioAtualizado;
 }
+export async function deleteUsername(username:string){
+    const usuarioDeletado = await prisma.usuario.delete({
+        where:{
+            username:username
+        }
+    });
+    
+    
+    }
+
+    
     
 
 

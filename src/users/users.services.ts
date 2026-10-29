@@ -16,3 +16,6 @@ export async function ListaUser(usuarioID: string){
 export async function atualizaUsername(novo_username:string, username:string){
     return usersRepository.updateUsername(novo_username, username);
 }
+export async function deleteUsername(username:string){
+    return usersRepository.deleteUsername(username);
+}
