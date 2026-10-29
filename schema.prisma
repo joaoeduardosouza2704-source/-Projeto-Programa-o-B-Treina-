@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AvaliacaoFisica {
+  id                        String  @id
+  peso_corporal             Float
+  gordura_corporal          Float
+  idade                     Int
+  peso_desejado             Float
+  gordura_corporal_desejada Float
+  usuarioID                 String
+  Usuario                   Usuario @relation(fields: [usuarioID], references: [id])
+}
+
+model Exercicio {
+  id       String  @id
+  nome     String
+  descanso Int?
+  treinoID String
+  Treino   Treino  @relation(fields: [treinoID], references: [id])
+  Serie    Serie[]
+}
+
+model Serie {
+  id           String    @id
+  numero_serie Int
+  repeticoes   Int
+  carga        Float
+  exercicioID  String
+  Exercicio    Exercicio @relation(fields: [exercicioID], references: [id])
+}
+
+model Suplemento {
+  id        String  @id
+  nome      String
+  dosagem   String
+  horario   String?
+  usuarioID String
+  Usuario   Usuario @relation(fields: [usuarioID], references: [id])
+}
+
+model Treino {
+  id             String      @id
+  usuarioId      String
+  titulo         String
+  descricao      String?
+  data           DateTime    @default(now())
+  duracao_treino Int
+  Exercicio      Exercicio[]
+  Usuario        Usuario     @relation(fields: [usuarioId], references: [id])
+}
+
+model Usuario {
+  id              String            @id @default(uuid())
+  nome            String
+  username        String            @unique
+  email           String            @unique
+  password        String
+  criadoEm        DateTime          @default(now())
+  AvaliacaoFisica AvaliacaoFisica[]
+  Suplemento      Suplemento[]
+  Treino          Treino[]
+}
