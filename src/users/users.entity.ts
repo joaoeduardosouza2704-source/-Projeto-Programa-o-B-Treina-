@@ -4,6 +4,7 @@ export interface UsersProps {
     nome:string;
     username: string;
     email: string;
+    password?: string;
 }
 export class User {
     private _id: string;
@@ -11,6 +12,7 @@ export class User {
     private _username: string;
     private _email: string;
     private _criadoEm: Date;
+    private _password?:string;
     private _treinos: Treino[];
 
 constructor(props:UsersProps, id?: string, criadoEm?: Date){
@@ -20,6 +22,7 @@ constructor(props:UsersProps, id?: string, criadoEm?: Date){
     this._email = props.email;
     this._criadoEm = criadoEm ?? new Date();
     this._treinos = [];
+    this._password = props.password;
 }
 public get id():string {return this._id;}
 public get nome():string {return this._nome;}
@@ -27,6 +30,7 @@ public get email():string{return this._email;}
 public get username(): string{return this._username;}
 public get criadoEm(): Date{return this._criadoEm;}
 public get treinos(): Treino[] {return this._treinos;}
+public get password():string {return this._password;}
 
 public set nome(value:string) { this._nome = value;}
 public set email(value:string){this._email = value;}
