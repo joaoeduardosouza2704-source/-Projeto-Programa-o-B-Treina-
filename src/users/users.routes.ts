@@ -3,8 +3,6 @@ import * as usersController from "./users.controller";
 
 const router = Router();
 router.get("/api/users", usersController.getAll);
-router.get("/api/users/:id", usersController.findByID);
-router.patch("/api/users/:username", usersController.updateUser);
-
+router.post("/api/users", usersController.create);
 
 export default router;
