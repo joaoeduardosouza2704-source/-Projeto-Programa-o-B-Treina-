@@ -4,7 +4,7 @@ import {User} from "./users.entity";
 export async function findAll(){
     const usuariosPrisma = await prisma.usuario.findMany({
         include:{
-            treinos:true,
+            Treino:true,
         }
     });
 
@@ -87,17 +87,15 @@ export async function updateUsername(username_novo:string, username:string){
         }
 
     });
-    const usuarioAtualizado = new User({
+    const usuario = new User({
         nome: usuarioPrisma.nome,
         username: usuarioPrisma.username,
         email: usuarioPrisma.email,
         usuarioID:usuarioPrisma.id,
-        criadoEm:usuarioPrisma.criadoEm,
-        password:usuarioPrisma.password
-        
+        criadoEm:usuarioPrisma.criadoEm
     }
     );
-    return usuarioAtualizado;
+    return usuario;
 }
 export async function deleteUsername(username:string){
     const usuarioDeletado = await prisma.usuario.delete({

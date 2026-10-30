@@ -36,4 +36,6 @@ public set nome(value:string) { this._nome = value;}
 public set email(value:string){this._email = value;}
 public set username(value:string){this._username = value;}
 public set treinos(value: Treino[]){ this._treinos = value;}
+public set password(value:string){this._password = value;}
 }
+

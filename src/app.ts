@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 import { loadConfig } from "./config";
 import {AppError} from "./errors/AppError";
 import express from "express";
@@ -10,17 +10,20 @@ import { errorHandler } from "./errors/errorHandler";
 
 const config = loadConfig();
 const app = express();
-app.use(express.json())
-app.use((req:Request, res:Responde , next:Next Function) => {
-    const err: AppError = new AppError("A rota solicitada não existe.", 404, "ROUTE_NOT_FOUND");
-    next(err);
+app.use((req: Request, res: Response, next: NextFunction) => {
+  console.log(`[REQUISIÇÃO CHEGOU] Método: ${req.method} | URL: ${req.url}`);
+  next();
 });
-app.use(errorHandler);
+app.use(express.json())
 app.use(usersRoutes);
 app.use(treinosRoutes);
 app.use(suplementoRoutes);
 app.use(authRoutes);
-
+app.use((req:Request, res:Response , next:NextFunction) => {
+    const err: AppError = new AppError("A rota solicitada não existe.", 404, "ROUTE_NOT_FOUND");
+    next(err);
+});
+app.use(errorHandler);
 
 
 app.listen(config.port, () => {

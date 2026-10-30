@@ -8,3 +8,4 @@ constructor(message: string, statusCode = 400, code = "BAD_REQUEST"){
     this.code = code
     Object.setPrototypeOf(this, new.target.prototype);
 }
+}
