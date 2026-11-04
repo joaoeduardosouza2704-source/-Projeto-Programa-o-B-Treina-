@@ -2,6 +2,9 @@ import "dotenv/config";
 import { loadConfig } from "./config";
 import {AppError} from "./errors/AppError";
 import express from "express";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./docs/swagger";
+
 import usersRoutes from "./users/users.routes";
 import treinosRoutes from "./treinos/treinos.routes";
 import suplementoRoutes from "./suplementos/suplementos.router";
@@ -15,6 +18,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 app.use(express.json())
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(usersRoutes);
 app.use(treinosRoutes);
 app.use(suplementoRoutes);
